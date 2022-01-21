@@ -9,7 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Domain</artifactId>
+    <artifactId>domain</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>Faker</artifactId>
+            <version>3.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 
 </project>
