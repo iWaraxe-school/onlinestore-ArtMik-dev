@@ -26,13 +26,13 @@ public class Store {
         for (Category category: categories){
             System.out.println("\n" + "--------------------------------------------");
             System.out.println("\n" + "CATEGORY NAME: " + category.getName());
-            System.out.println("\n" + "PRODUCTS: ");
+            System.out.println("\n" + "PRODUCTS: " + category.getProducts());
 
         }
     }
 
 
-    public List<Product> getAllProducts() {
+ /*   public List<Product> getAllProducts() {
         List<Product> allProductsFromAllCategories = new ArrayList<>();
         for (Category category: categories){
             for(Product product: category.getProducts()){
@@ -40,6 +40,6 @@ public class Store {
             }
         }
         return allProductsFromAllCategories;
-    }
+    }*/
 }
 
