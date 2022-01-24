@@ -31,6 +31,7 @@ public class Product {
         }
 
         public void setPrice(int price) {
+
             this.price = price;
         }
 
@@ -41,6 +42,7 @@ public class Product {
 
         @Override
         public String toString() {
+
             return name + ' ' + price + "$" + ", rate= " + rate + '\n';
         }
     }

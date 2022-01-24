@@ -1,26 +1,23 @@
-public class Category {
+import java.util.List;
 
-    public Category(String category) {
+    public class Category {
 
-    }
+        private String name;
+        private List<Product> products;
 
-    public class category {
-
-        protected String categoryName;
-
-        public category(String categoryName) {
-
-            this.categoryName = categoryName;
+        public Category(String name) {
+            this.name = name;
         }
 
-        @Override
-        public String toString() {
+        public String getName() {
+            return name;
+        }
 
-            return categoryName;
+        public List<Product> getProducts() {
+            return products;
+        }
+
+        public void setProducts(List<Product> products) {
+            this.products = products;
         }
     }
-}
-
-
-
-
