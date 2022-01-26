@@ -1,21 +1,23 @@
 import java.util.List;
 
-    public class Category {
+public class Category {
+    private String name;
+    private List<Product> products;
 
-        private String name;
-        private List<Product> products;
+    public Category(String name) {
 
-        public Category(String name) {
-            this.name = name;
-        }
+        this.name = name;
+    }
 
-        public String getName() {
-            return name;
-        }
+    public String getName() {
 
-        public List<Product> getProducts() {
-            return products;
-        }
+        return name;
+    }
+
+    public List<Product> getProducts() {
+
+        return products;
+    }
 
         public void setProducts(List<Product> products) {
             this.products = products;
