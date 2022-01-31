@@ -1,8 +1,9 @@
-public class storeApp {
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-        Store store = new Store();
-        RandomStorePopulator rand = new RandomStorePopulator();
-        store.printStoreData();
+import org.apache.cassandra.db.ReadCommandVerbHandler;
 
+public class storeApp {
+
+    public static void main(String[] args) {
+        Store store = new Store();
+        store.viewStore();
     }
 }

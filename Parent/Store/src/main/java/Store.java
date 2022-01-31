@@ -4,42 +4,34 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-public class Store {
+public class Store  {
 
-    RandomStorePopulator randomStorePopulator = new RandomStorePopulator();
+    public RandomStorePopulator populator = new RandomStorePopulator();
+    public List<Category> categories;
 
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
+    public Store() {
 
-    private List<Category> categories;
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public Store() throws InstantiationException, IllegalAccessException {
-        this.categories = randomStorePopulator.getCategories();
-    }
-
-    public void printStoreData() {
-        for (Category category: categories){
-            System.out.println("\n" + "--------------------------------------------");
-            System.out.println("\n" + "CATEGORY NAME: " + category.getName());
-            System.out.println("\n" + "PRODUCTS: " + category.getProducts());
-
+        try {
+            categories = populator.getCategoriesShop();
+        }catch (IllegalAccessException e) {
+            System.out.println(e.getMessage());
+        } catch (InstantiationException e) {
+            e.printStackTrace();
         }
     }
 
-
- /*   public List<Product> getAllProducts() {
-        List<Product> allProductsFromAllCategories = new ArrayList<>();
-        for (Category category: categories){
-            for(Product product: category.getProducts()){
-                allProductsFromAllCategories.add(product);
+    public void viewStore() {
+        for (Category category: categories) {
+            System.out.println(StringUtils.join(category.getName(), " "));
+            for (Product product: category.getProducts()) {
+                System.out.println(StringUtils.join(product.toString()));
             }
         }
-        return allProductsFromAllCategories;
-    }*/
+
+    }
+
 }
+
+
+
 
