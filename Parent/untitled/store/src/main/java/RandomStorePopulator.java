@@ -9,21 +9,17 @@ public class RandomStorePopulator {
 
     Reflections reflections = new Reflections();
     Set<Class<? extends Category>> subCategories = reflections.getSubTypesOf(Category.class);
-
     Faker faker = new Faker();
 
     public List<Product> products = new ArrayList<>();
     public List<Category> categories = new ArrayList<>();
 
-    public Product generateFakeProduct(String fakeName) {
-        Product newProduct = new Product(fakeName, faker.number().numberBetween(1, 70),faker.number().numberBetween(2, 3));
+    public Product FakeProduct(String fakeName) {
+        Product newProduct = new Product(fakeName, faker.number().numberBetween(1, 70), (int) faker.number().randomDouble(2, 3, 1));
         return newProduct;
     }
 
-    public List<Category> getCategoriesShop() throws IllegalAccessException, InstantiationException {
-        subCategories.add(Fruit.class);
-        subCategories.add(Finance.class);
-        subCategories.add(Hobbit.class);
+    public List<Category> getCategories() throws IllegalAccessException, InstantiationException {
         for (Class<? extends Category> subCategory : subCategories) {
             Category category = subCategory.newInstance();
             int ProductNumber = faker.number().numberBetween(1, 5);
@@ -31,13 +27,13 @@ public class RandomStorePopulator {
             for (int i = 0; i < ProductNumber; i++) {
                 switch (category.getName()) {
                     case "Fruit":
-                        products.add(generateFakeProduct(faker.food().fruit()));
+                        products.add(FakeProduct(faker.food().fruit()));
                         break;
                     case "Hobbit":
-                        products.add(generateFakeProduct(faker.hobbit().character()));
+                        products.add(FakeProduct(faker.hobbit().character()));
                         break;
                     case "Finance":
-                        products.add(generateFakeProduct(faker.finance().bic()));
+                        products.add(FakeProduct(faker.finance().bic()));
                         break;
                 }
                 category.setProducts(products);
@@ -49,3 +45,9 @@ public class RandomStorePopulator {
     }
 
 }
+
+
+
+
+
+
