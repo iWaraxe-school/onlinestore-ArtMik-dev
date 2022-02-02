@@ -1,4 +1,4 @@
-public class Product {
+public class Product{
 
     private int rate;
     private int price;

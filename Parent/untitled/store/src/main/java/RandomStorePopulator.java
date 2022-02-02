@@ -37,13 +37,11 @@ public class RandomStorePopulator {
                         break;
                 }
                 category.setProducts(products);
-
             }
             categories.add(category);
         }
         return categories;
     }
-
 }
 
 

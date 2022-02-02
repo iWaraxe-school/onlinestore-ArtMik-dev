@@ -26,11 +26,9 @@ public class XML_Parser <documentBuilder>{
         Document doc = null;
         try {
             doc = documentBuilder.parse(file);
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (SAXException | IOException e) {
             e.printStackTrace();
         }
-        return doc.getElementsByTagName(TagName).item(0).getTextContent();
+        return doc != null ? doc.getElementsByTagName(TagName).item(0).getTextContent():null;
     }
 }
