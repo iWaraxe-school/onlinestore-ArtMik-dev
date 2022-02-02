@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 public class Store {
 
     RandomStorePopulator randomStorePopulator = new RandomStorePopulator();
+    ProductComparator comparator = new ProductComparator();
 
     public void setCategories(List<Category> categories) {
 
@@ -20,20 +22,33 @@ public class Store {
         this.categories = randomStorePopulator.getCategories();
     }
 
-    public void prettyProducts(List<Product> category) {
-        for (Product product : category) {
-            String pattern = "   Product: name=%s, rate=%s, price=%s ";
-            System.out.println(String.format(pattern, product.getName(), product.getRate(), product.getPrice()));
-        }
-    }
+        public void productSort() throws InstantiationException, IllegalAccessException {
+            List<Product> tempProducts = new ArrayList<>();
+            for (Category category : getCategories()) {
+                tempProducts.addAll(category.getProducts());
+            }
+            List<Product> tempProductList = new ArrayList<>(tempProducts);
+            Comparator<Product> comp = new ProductComparator().thenComparing(new ProductComparator());
+            tempProductList.sort(comp);
+            for (Product p : tempProductList) {
+                System.out.println("--------------------------------------------");
+                System.out.println("NAME: " + p.getName() + " PRODUCTS: " + p.getPrice());
+            }
 
-    public void printStoreData() {
-        for (Category category: categories){
-            System.out.println("\n" + "--------------------------------------------");
-            System.out.println("\n" + "CATEGORY NAME: " + category.getName());
-            System.out.println("\n" + "PRODUCTS: " + category.getProducts());
-
-        }
     }
-}
+            public void productTop() throws InstantiationException, IllegalAccessException {
+                List<Product> tempProductsTop5 = new ArrayList<>();
+                for (Category category : getCategories()) {
+                    tempProductsTop5.addAll(category.getProducts());
+                }
+                List<Product> tempProductListTop5 = new ArrayList<>(tempProductsTop5);
+                Comparator<Product> compTop5 = new ProductComparator().thenComparing(new ProductComparator()).reversed();
+                tempProductListTop5.sort(compTop5);
+                for (int i = 0; i < 5 && tempProductListTop5.get(i) != null; i++) {
+                    System.out.println("--------------------------------------------");
+                    System.out.println(" NAME: " + tempProductListTop5.get(i).getName() + " PRODUCTS: " + tempProductListTop5.get(i).getPrice());
+
+                }
+            }
+        }
 
