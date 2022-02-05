@@ -1,8 +1,8 @@
 public class Product{
 
-    private int rate;
-    private int price;
-    private String name;
+    public int rate;
+    public int price;
+    public String name;
 
     public Product(String name, int rate, int price) {
         this.name = name;
@@ -24,25 +24,9 @@ public class Product{
 
         return name;
     }
-
-    public void setRate(int rate) {
-
-        this.rate = rate;
-    }
-
-    public void setPrice(int price) {
-
-        this.price = price;
-    }
-
-    public void setName(String name) {
-
-        this.name = name;
-    }
-
     @Override
     public String toString() {
 
-        return name + ' ' + price + "$" + ", rate= " + rate + '\n';
+        return name + ' ' + price + "$" + ", rate= " + rate;
     }
 }

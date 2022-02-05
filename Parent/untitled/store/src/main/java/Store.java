@@ -1,20 +1,18 @@
+
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+
 public class Store {
 
     RandomStorePopulator randomStorePopulator = new RandomStorePopulator();
-    ProductComparator comparator = new ProductComparator();
 
     public void setCategories(List<Category> categories) {
-
         this.categories = categories;
     }
 
     private List<Category> categories;
 
     public List<Category> getCategories() {
-
         return categories;
     }
 
@@ -22,8 +20,24 @@ public class Store {
         this.categories = randomStorePopulator.getCategories();
     }
 
-        public void productSort() throws InstantiationException, IllegalAccessException {
-            List<Product> tempProducts = new ArrayList<>();
+    public void printListProducts(List<Product> products) {
+        for (Product product : products) {
+            System.out.println(product.toString());
+        }
+    }
+    public List<Product> getAllProducts() {
+        List<Product> allProductsFromAllCategories = new ArrayList<>();
+        for (Category category : categories) {
+            for (Product product : category.getProducts()) {
+                allProductsFromAllCategories.add(product);
+            }
+        }
+        return allProductsFromAllCategories;
+    }
+}
+
+
+         /*   List<Product> tempProducts = new ArrayList<>();
             for (Category category : getCategories()) {
                 tempProducts.addAll(category.getProducts());
             }
@@ -32,11 +46,10 @@ public class Store {
             tempProductList.sort(comp);
             for (Product p : tempProductList) {
                 System.out.println("--------------------------------------------");
-                System.out.println("NAME: " + p.getName() + " PRODUCTS: " + p.getPrice());
-            }
+                System.out.println("NAME: " + p.getName() + " PRODUCTS: " + p.getPrice());*/
 
-    }
-            public void productTop() throws InstantiationException, IllegalAccessException {
+
+/*            public void productTop() throws InstantiationException, IllegalAccessException {
                 List<Product> tempProductsTop5 = new ArrayList<>();
                 for (Category category : getCategories()) {
                     tempProductsTop5.addAll(category.getProducts());
@@ -49,6 +62,6 @@ public class Store {
                     System.out.println(" NAME: " + tempProductListTop5.get(i).getName() + " PRODUCTS: " + tempProductListTop5.get(i).getPrice());
 
                 }
-            }
-        }
+            }*/
+
 

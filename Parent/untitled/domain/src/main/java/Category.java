@@ -1,3 +1,6 @@
+
+
+import java.util.Collection;
 import java.util.List;
 
 public class Category {
@@ -6,14 +9,17 @@ public class Category {
     private List<Product> products;
 
     public Category(String name) {
+
         this.name = name;
     }
 
     public String getName() {
+
         return name;
     }
 
-    public List<Product> getProducts() {
+    public Collection<? extends Product> getProducts() {
+
         return products;
     }
 

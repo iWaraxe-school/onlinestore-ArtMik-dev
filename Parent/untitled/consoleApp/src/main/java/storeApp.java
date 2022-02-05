@@ -5,29 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class storeApp {
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException, IOException {
+    public static void main(String[] args) throws Exception {
+        Store store = new Store();
+        StoreHelper storeHelper = new StoreHelper(store);
 
-
-        Boolean flag = true;
-        while (flag) {
+//store.printListProducts(store.getAllProducts());
+        while (true) {
 
             System.out.println("Enter command sort/top/quit:");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             String command = reader.readLine();
-            Store store = new Store();
+
 
             System.out.println("Your command is : " + command);
             switch (command) {
                 case "sort":
-                    store.productSort();
+                    store.printListProducts(storeHelper.sortAllProducts());
                     break;
                 case "top":
                     System.out.println("Print top 5 products sorted via price desc.");
-                    store.productTop();
+                    store.printListProducts(storeHelper.getTop5());
                     break;
                 case "quit":
-                    flag = false;
-                    break;
+                    System.exit(0);
                 default:
                     System.out.println("The command is not recognized.");
             }
