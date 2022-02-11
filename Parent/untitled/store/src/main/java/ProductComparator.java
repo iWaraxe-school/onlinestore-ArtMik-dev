@@ -1,3 +1,4 @@
+import Categories.Product;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 
 import java.util.Comparator;

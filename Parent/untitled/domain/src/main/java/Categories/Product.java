@@ -1,7 +1,9 @@
+package Categories;
+
 public class Product{
 
-    public int rate;
-    public int price;
+    public double rate;
+    public double price;
     public String name;
 
     public Product(String name, int rate, int price) {
@@ -12,12 +14,12 @@ public class Product{
 
     public int getRate() {
 
-        return rate;
+        return (int) rate;
     }
 
     public int getPrice() {
 
-        return price;
+        return (int) price;
     }
 
     public String getName() {

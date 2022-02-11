@@ -20,7 +20,6 @@ public class XML_Parser {
 
 
     public Map<String, String> getAllPropertiesToSort() throws ParserConfigurationException, IOException, SAXException {
-        //File file = new File("store.xml");
         String sortTag = "sort";
         Map<String, String> propertiesMap = new LinkedHashMap<>();
 
@@ -34,7 +33,6 @@ public class XML_Parser {
         Element elementary;
         for (int i = 0; i < sortProperties.getLength(); i++) {
 
-            //get all child tag names and values from config file and add them in properties map
             if (sortProperties.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 elementary = (Element) sortProperties.item(i);
 
