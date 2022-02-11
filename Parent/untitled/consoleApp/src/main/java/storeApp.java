@@ -1,21 +1,35 @@
+import poplators.*;
+
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class storeApp {
     public static void main(String[] args) throws Exception {
         Store store = new Store();
         StoreHelper storeHelper = new StoreHelper(store);
 
-//store.printListProducts(store.getAllProducts());
+        IPopulator populator = null;
+        PopulatorEnum populatorType = PopulatorEnum.RandomStorePopulator;
+
+        switch (populatorType) {
+            case RandomStorePopulator:
+                populator = new RandomStorePopulator();
+                break;
+            case DBPopulator:
+                populator = new DBPopulator();
+                break;
+            case HttpPopulator:
+                populator = new HttpPopulator();
+                break;
+        }
+         store.fillStore(populator);
+         store.printAllCategoriesAndProduct();
+
         while (true) {
 
             System.out.println("Enter command sort/top/quit:");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             String command = reader.readLine();
-
 
             System.out.println("Your command is : " + command);
             switch (command) {

@@ -1,6 +1,7 @@
 
 
-import javax.sql.rowset.spi.XmlReader;
+import Categories.Product;
+
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.*;
 
