@@ -1,4 +1,4 @@
-package poplators;
+package populators;
 
 import Categories.Category;
 import Categories.CategoryEnum;
@@ -6,7 +6,6 @@ import Categories.Product;
 import com.github.javafaker.Faker;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
-import poplators.IPopulator;
 
 import java.util.ArrayList;
 import java.util.List;

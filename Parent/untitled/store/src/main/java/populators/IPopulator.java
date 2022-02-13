@@ -1,4 +1,4 @@
-package poplators;
+package populators;
 
 import Categories.Category;
 import Categories.CategoryEnum;

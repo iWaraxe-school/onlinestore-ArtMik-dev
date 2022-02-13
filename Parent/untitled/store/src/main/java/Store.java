@@ -2,15 +2,14 @@
 import Categories.Category;
 import Categories.CategoryEnum;
 import Categories.Product;
-import poplators.IPopulator;
-import poplators.RandomStorePopulator;
+import populators.IPopulator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Store {
     public List<Category> categories = new ArrayList<>();
-
+    public static List<Product> purchasedProductList = new ArrayList<>();
     public void printAllCategoriesAndProduct() {
 
         for (Category category : categories) {
@@ -43,6 +42,17 @@ public class Store {
             }
         }
         return allProductsFromAllCategories;
+    }
+
+    public List<Product> getListOfAllProducts() {
+
+        List<Product> allProducts = new ArrayList<>();
+
+        for (Category category : this.categories) {
+            allProducts.addAll(category.getProducts());
+        }
+
+        return allProducts;
     }
 }
 
