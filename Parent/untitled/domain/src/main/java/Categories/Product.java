@@ -2,8 +2,8 @@ package Categories;
 
 public class Product{
 
-    public double rate;
-    public double price;
+    public int rate;
+    public int price;
     public String name;
 
     public Product(String name, int rate, int price) {
@@ -14,12 +14,12 @@ public class Product{
 
     public int getRate() {
 
-        return (int) rate;
+        return rate;
     }
 
     public int getPrice() {
 
-        return (int) price;
+        return  price;
     }
 
     public String getName() {

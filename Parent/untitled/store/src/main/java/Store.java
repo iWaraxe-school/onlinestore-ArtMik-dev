@@ -8,8 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Store {
-    public List<Category> categories = new ArrayList<>();
-    public static List<Product> purchasedProductList = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
+    private List<Product> purchasedProductList = new ArrayList<>();
+
+
+
     public void printAllCategoriesAndProduct() {
 
         for (Category category : categories) {
@@ -18,13 +21,10 @@ public class Store {
     }
     public void fillStore(IPopulator populator) {
 
-        List<Category> categories = populator.getCategories();
-        categories.addAll(categories);
+        categories.addAll(populator.getCategories());
 
         for (Category category : categories) {
-
-            List<Product> products = populator.getProductsForCategory(CategoryEnum.valueOf(category.getName()));
-            category.setProducts(products);
+            category.setProducts(populator.getProductsForCategory(CategoryEnum.valueOf(category.getName())));
         }
     }
 
@@ -53,6 +53,21 @@ public class Store {
         }
 
         return allProducts;
+    }
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public  List<Product> getPurchasedProductList() {
+        return purchasedProductList;
+    }
+
+    public void setPurchasedProductList(List<Product> purchasedProductList) {
+        this.purchasedProductList = purchasedProductList;
     }
 }
 

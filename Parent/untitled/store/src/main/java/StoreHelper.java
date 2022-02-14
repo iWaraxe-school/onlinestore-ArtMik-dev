@@ -1,6 +1,5 @@
-
-
 import Categories.Product;
+import lombok.SneakyThrows;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.*;
@@ -47,30 +46,35 @@ public class StoreHelper {
 
         return top5;
     }
+    @SneakyThrows
     public void createOrder(String productName) {
 
         System.out.printf(Thread.currentThread().getName());
 
         Product orderedProduct = getOrderedProduct(productName);
-        int threadTime = new Random().nextInt(30);
+        if(orderedProduct !=null) {
+            int threadTime = new Random().nextInt(30);
 
-        executorService.execute(() -> {
-            try {
-                System.out.printf("Starting order ", Thread.currentThread().getName());
-                store.purchasedProductList.add(orderedProduct);
+            executorService.execute(() -> {
+                try {
+                    System.out.printf("Starting order ", Thread.currentThread().getName());
+                    store.getPurchasedProductList().add(orderedProduct);
 
-                store.printListProducts( store.purchasedProductList);
+                    store.printListProducts(store.getPurchasedProductList());
 
-                Thread.sleep(threadTime * 1000);
+                    Thread.sleep(threadTime * 1000);
 
-                System.out.printf("Finishing order ", Thread.currentThread().getName());
+                    System.out.printf("Finishing order ", Thread.currentThread().getName());
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
 
-        System.out.println("createOrder() is finished " + Thread.currentThread().getName());
+            System.out.println("createOrder() is finished " + Thread.currentThread().getName());
+        }else {
+            System.out.println("createOrder() is finished because orderProducts is not correct ");
+        }
     }
 
     public void shutdownThreads(){
@@ -79,12 +83,6 @@ public class StoreHelper {
 
     private Product getOrderedProduct(String productName)
     {
-        Optional<Product> orderedProduct =  store.getListOfAllProducts().stream().parallel()
-                .filter(x -> x.name.equals(productName))
-                .findFirst();
-
-        Product product = orderedProduct.isPresent() ? orderedProduct.get() : null;
-
-        return product;
+        return store.getListOfAllProducts().stream().parallel().filter(x -> x.name.equals(productName)).findFirst().orElse(null);
     }
 }

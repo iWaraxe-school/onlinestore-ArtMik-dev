@@ -27,11 +27,11 @@ public class storeApp {
          store.printAllCategoriesAndProduct();
 
         Timer timer = new Timer();
-        timer.schedule(new TimerCleanupTask(), 0, 60000);
+        timer.schedule(new TimerCleanTask(store), 0, 60000);
 
         while (true) {
 
-            System.out.println("Enter command sort/top/quit:");
+            System.out.println("Enter command sort/top/createOrder/quit:");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             String command = reader.readLine();
 

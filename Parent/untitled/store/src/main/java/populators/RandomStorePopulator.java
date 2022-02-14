@@ -21,7 +21,7 @@ public class RandomStorePopulator implements IPopulator {
 
         List<Category>  categories = new ArrayList<>();
 
-        Reflections reflections = new Reflections("domain", new SubTypesScanner());
+        Reflections reflections = new Reflections("Categories", new SubTypesScanner());
 
         Set<Class<? extends Category>> subTypes = reflections.getSubTypesOf(Category.class);
 
@@ -42,7 +42,7 @@ public class RandomStorePopulator implements IPopulator {
 
         List<Product> resultList = new ArrayList<>();
         Random random = new Random();
-        int productCount = random.nextInt(10);
+        int productCount = random.nextInt(3);
 
         resultList.addAll(generateProductList(category, productCount));
 
@@ -54,7 +54,7 @@ public class RandomStorePopulator implements IPopulator {
 
         for (int i = 0; i < count; i++) {
 
-            resultList.add(new Product(generateFakeProductName(category), (int) getPrice(), (int) getRate()));
+            resultList.add(new Product(generateFakeProductName(category), getPrice(), getRate()));
         }
 
         return resultList;
@@ -74,12 +74,12 @@ public class RandomStorePopulator implements IPopulator {
         }
     }
 
-    private double getPrice() {
+    private int getPrice() {
 
         return faker.number().numberBetween(1, 100);
     }
 
-    private double getRate() {
+    private int getRate() {
 
         return faker.number().numberBetween(1, 5);
     }
