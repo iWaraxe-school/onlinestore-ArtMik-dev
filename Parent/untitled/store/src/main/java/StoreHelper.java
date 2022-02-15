@@ -1,14 +1,16 @@
-
-
 import Categories.Product;
+import lombok.SneakyThrows;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class StoreHelper {
     Store store;
 
+    public ExecutorService executorService = Executors.newFixedThreadPool(3);
     public StoreHelper(Store store) {
 
         this.store = store;
@@ -20,7 +22,7 @@ public class StoreHelper {
             sortBy = xml.getAllPropertiesToSort();
         }
         catch (ParserConfigurationException e){
-            throw new Exception("Error: Config file exception.");
+            throw new Exception();
         }
         return sortAllProducts(sortBy);
 
@@ -44,5 +46,43 @@ public class StoreHelper {
 
         return top5;
     }
+    @SneakyThrows
+    public void createOrder(String productName) {
 
+        System.out.printf(Thread.currentThread().getName());
+
+        Product orderedProduct = getOrderedProduct(productName);
+        if(orderedProduct !=null) {
+            int threadTime = new Random().nextInt(30);
+
+            executorService.execute(() -> {
+                try {
+                    System.out.printf("Starting order ", Thread.currentThread().getName());
+                    store.getPurchasedProductList().add(orderedProduct);
+
+                    store.printListProducts(store.getPurchasedProductList());
+
+                    Thread.sleep(threadTime * 1000);
+
+                    System.out.printf("Finishing order ", Thread.currentThread().getName());
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            System.out.println("createOrder() is finished " + Thread.currentThread().getName());
+        }else {
+            System.out.println("createOrder() is finished because orderProducts is not correct ");
+        }
+    }
+
+    public void shutdownThreads(){
+        executorService.shutdown();
+    }
+
+    private Product getOrderedProduct(String productName)
+    {
+        return store.getListOfAllProducts().stream().parallel().filter(x -> x.name.equals(productName)).findFirst().orElse(null);
+    }
 }

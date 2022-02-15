@@ -1,4 +1,4 @@
-package poplators;
+package populators;
 
 public enum PopulatorEnum {
     RandomStorePopulator,

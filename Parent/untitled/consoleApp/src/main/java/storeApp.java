@@ -1,7 +1,8 @@
-import poplators.*;
+import populators.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Timer;
 
 public class storeApp {
     public static void main(String[] args) throws Exception {
@@ -25,9 +26,12 @@ public class storeApp {
          store.fillStore(populator);
          store.printAllCategoriesAndProduct();
 
+        Timer timer = new Timer();
+        timer.schedule(new TimerCleanTask(store), 0, 60000);
+
         while (true) {
 
-            System.out.println("Enter command sort/top/quit:");
+            System.out.println("Enter command sort/top/createOrder/quit:");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             String command = reader.readLine();
 
@@ -39,6 +43,11 @@ public class storeApp {
                 case "top":
                     System.out.println("Print top 5 products sorted via price desc.");
                     store.printListProducts(storeHelper.getTop5());
+                    break;
+                case "createOrder":
+                    System.out.println("Enter name of product to order:");
+                    String productName = reader.readLine();
+                    storeHelper.createOrder(productName);
                     break;
                 case "quit":
                     System.exit(0);

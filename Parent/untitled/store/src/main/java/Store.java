@@ -2,14 +2,16 @@
 import Categories.Category;
 import Categories.CategoryEnum;
 import Categories.Product;
-import poplators.IPopulator;
-import poplators.RandomStorePopulator;
+import populators.IPopulator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Store {
-    public List<Category> categories = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
+    private List<Product> purchasedProductList = new ArrayList<>();
+
+
 
     public void printAllCategoriesAndProduct() {
 
@@ -19,13 +21,10 @@ public class Store {
     }
     public void fillStore(IPopulator populator) {
 
-        List<Category> categories = populator.getCategories();
-        categories.addAll(categories);
+        categories.addAll(populator.getCategories());
 
         for (Category category : categories) {
-
-            List<Product> products = populator.getProductsForCategory(CategoryEnum.valueOf(category.getName()));
-            category.setProducts(products);
+            category.setProducts(populator.getProductsForCategory(CategoryEnum.valueOf(category.getName())));
         }
     }
 
@@ -43,6 +42,32 @@ public class Store {
             }
         }
         return allProductsFromAllCategories;
+    }
+
+    public List<Product> getListOfAllProducts() {
+
+        List<Product> allProducts = new ArrayList<>();
+
+        for (Category category : this.categories) {
+            allProducts.addAll(category.getProducts());
+        }
+
+        return allProducts;
+    }
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public  List<Product> getPurchasedProductList() {
+        return purchasedProductList;
+    }
+
+    public void setPurchasedProductList(List<Product> purchasedProductList) {
+        this.purchasedProductList = purchasedProductList;
     }
 }
 
