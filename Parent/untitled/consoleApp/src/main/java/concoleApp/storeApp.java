@@ -1,16 +1,20 @@
-import populators.*;
+package concoleApp;
+
+import store.Store;
+import store.StoreHelper;
+import store.TimerCleanTask;
+import store.populators.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Timer;
-
 public class storeApp {
     public static void main(String[] args) throws Exception {
         Store store = new Store();
         StoreHelper storeHelper = new StoreHelper(store);
 
         IPopulator populator = null;
-        PopulatorEnum populatorType = PopulatorEnum.RandomStorePopulator;
+        PopulatorEnum populatorType = PopulatorEnum.DBPopulator;
 
         switch (populatorType) {
             case RandomStorePopulator:

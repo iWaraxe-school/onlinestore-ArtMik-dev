@@ -1,3 +1,5 @@
+package store;
+
 import Categories.Product;
 import lombok.SneakyThrows;
 

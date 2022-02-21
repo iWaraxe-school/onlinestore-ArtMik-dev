@@ -1,8 +1,9 @@
+package store;
 
 import Categories.Category;
 import Categories.CategoryEnum;
 import Categories.Product;
-import populators.IPopulator;
+import store.populators.IPopulator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +78,7 @@ public class Store {
                 tempProducts.addAll(category.getProducts());
             }
             List<Categories.Product> tempProductList = new ArrayList<>(tempProducts);
-            Comparator<Categories.Product> comp = new ProductComparator().thenComparing(new ProductComparator());
+            Comparator<Categories.Product> comp = new Store.Store.ProductComparator().thenComparing(new Store.Store.ProductComparator());
             tempProductList.sort(comp);
             for (Categories.Product p : tempProductList) {
                 System.out.println("--------------------------------------------");
@@ -90,7 +91,7 @@ public class Store {
                     tempProductsTop5.addAll(category.getProducts());
                 }
                 List<Categories.Product> tempProductListTop5 = new ArrayList<>(tempProductsTop5);
-                Comparator<Categories.Product> compTop5 = new ProductComparator().thenComparing(new ProductComparator()).reversed();
+                Comparator<Categories.Product> compTop5 = new Store.Store.ProductComparator().thenComparing(new Store.Store.ProductComparator()).reversed();
                 tempProductListTop5.sort(compTop5);
                 for (int i = 0; i < 5 && tempProductListTop5.get(i) != null; i++) {
                     System.out.println("--------------------------------------------");
