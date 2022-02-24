@@ -14,7 +14,7 @@ public class storeApp {
         StoreHelper storeHelper = new StoreHelper(store);
 
         IPopulator populator = null;
-        PopulatorEnum populatorType = PopulatorEnum.DBPopulator;
+        PopulatorEnum populatorType = PopulatorEnum.HttpPopulator;
 
         switch (populatorType) {
             case RandomStorePopulator:
@@ -52,6 +52,20 @@ public class storeApp {
                     System.out.println("Enter name of product to order:");
                     String productName = reader.readLine();
                     storeHelper.createOrder(productName);
+                    break;
+                case "addToCart":
+                    System.out.println("Enter name of product to add to cart:");
+                    String product = reader.readLine();
+
+                    if (populator instanceof HttpPopulator) {
+                        ((HttpPopulator) populator).addSoppingCart(product);
+
+                        System.out.println("Products in the cart:");
+                        store.printListProducts(((HttpPopulator) populator).getProductsInCart());
+                    }
+                    else {
+                        System.out.println("'Add to Cart' command is not available for types other than HttpPopulator.");
+                    }
                     break;
                 case "quit":
                     System.exit(0);

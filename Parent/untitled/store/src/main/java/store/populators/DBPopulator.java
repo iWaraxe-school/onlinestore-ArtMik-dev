@@ -49,7 +49,7 @@ public class DBPopulator implements IPopulator {
             return (new RandomStorePopulator()).getProductsForCategory(categoryName);
         }
     }
-        private void fillByFaker() {
+    private void fillByFaker() {
 
             try {
                 RandomStorePopulator randomStorePopulator = new RandomStorePopulator();
