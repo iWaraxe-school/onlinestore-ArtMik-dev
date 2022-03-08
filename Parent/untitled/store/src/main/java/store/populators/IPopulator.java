@@ -10,4 +10,5 @@ public interface IPopulator {
     List<Category> getCategories();
 
     List<Product> getProductsForCategory(CategoryEnum category);
+
 }

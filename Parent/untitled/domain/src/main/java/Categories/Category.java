@@ -19,7 +19,6 @@ public class Category {
     }
 
     public Collection<? extends Product> getProducts() {
-
         return products;
     }
 
